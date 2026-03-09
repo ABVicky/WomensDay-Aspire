@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Happy Women's Day 🌸 — DigiSpire</title>
+    <meta name="description" content="A heartfelt Women's Day celebration for every incredible woman at DigiSpire." />
+    <meta name="theme-color" content="#0D0118" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Dancing+Script:wght@600;700&display=swap"
+        rel="stylesheet" />
+
+    <!-- GSAP core + ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script>gsap.registerPlugin(ScrollTrigger);</script>
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js" defer></script>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css" />
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX');
+    </script>
+</head>
+
+<body>
+
+    <!-- Custom Cursor -->
+    <div id="cursorDot"></div>
+    <div id="cursorRing"></div>
+    <canvas id="cursorCanvas"></canvas>
+
+    <!-- Particles -->
+    <canvas id="particleCanvas"></canvas>
+
+    <!-- Hearts layer (celebration) -->
+    <div id="heartsLayer" aria-hidden="true"></div>
+
+    <!-- Transition overlay -->
+    <div id="transitionOverlay" aria-hidden="true"></div>
+
+    <!-- ============================================================
+         SECTION 1 — HERO (Fullscreen Wallpaper)
+    ============================================================ -->
+    <section id="landing" class="section active" aria-label="Welcome">
+
+        <!-- Hero wallpaper background -->
+        <div class="hero-wallpaper" aria-hidden="true">
+            <img src="images/Heros.jpg.jpeg" alt="" class="hero-bg-img" />
+            <div class="hero-bg-overlay"></div>
+        </div>
+
+        <div class="hero-content">
+
+            <div class="deco-flowers top" aria-hidden="true">
+                <span>🌸</span><span>🌺</span><span>🌸</span><span>🌼</span><span>🌸</span>
+            </div>
+
+            <div class="hero-badge">✨ International Women's Day 2025</div>
+
+            <h1 class="hero-title">
+                <span class="hero-line-1">Happy</span>
+                <span class="hero-line-2">Women's Day</span>
+                <span class="hero-emoji" aria-hidden="true">🌸</span>
+            </h1>
+
+            <p class="hero-subtitle">
+                Today we celebrate the strength, kindness<br />
+                and brilliance that every woman in our<br />
+                organisation brings to our workplace.
+            </p>
+
+            <button id="enterBtn" class="btn-primary" aria-label="See the gallery">
+                <span class="btn-text">Meet Our Women ✨</span>
+                <span class="btn-icon" aria-hidden="true">💐</span>
+            </button>
+
+            <div class="deco-flowers bottom" aria-hidden="true">
+                <span>🌷</span><span>🌸</span><span>🌺</span><span>🌸</span><span>🌷</span>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ============================================================
+         SECTION 2 — GALLERY
+    ============================================================ -->
+    <section id="gallery" class="section" aria-label="Our Women">
+        <div class="gallery-wrapper">
+
+            <!-- Header -->
+            <div class="gallery-header">
+                <div class="gallery-badge">💐 Aspire &amp; DigiSpire Family 💐</div>
+                <h2 class="gallery-title">
+                    <span class="gallery-title-line1">Our Incredible</span>
+                    <span class="gallery-title-line2">Women 🌸</span>
+                </h2>
+                <p class="gallery-subtitle">Every one of you makes us stronger, kinder &amp; brighter ✨</p>
+            </div>
+
+            <!-- Photo Grid -->
+            <div class="photo-grid" id="photoGrid">
+                <!-- Cards injected by JS -->
+            </div>
+
+            <!-- Celebrate button + final message -->
+            <div class="gallery-footer">
+                <button id="celebrateBtn" class="btn-celebrate" aria-label="Trigger celebration">
+                    <span class="btn-text">🎉 Celebrate All Women!</span>
+                </button>
+
+                <div class="final-message" id="finalMessage">
+                    <div class="final-deco" aria-hidden="true">🌸</div>
+                    <p class="final-text">
+                        "You make our workplace stronger,<br />
+                        kinder, and more inspiring.<br /><br />
+                        <strong>Happy Women's Day 🌸</strong>"
+                    </p>
+                    <div class="final-hearts" aria-hidden="true">💖 💕 💗 💓 💝</div>
+                </div>
+
+                <button id="backToHeroBtn" class="btn-ghost" aria-label="Go back to hero">← Back to Home</button>
+
+                <div class="site-footer">
+                    <span class="footer-heart">💝</span>
+                    Crafted with caffeine, code &amp; a whole lot of love by
+                    <a href="https://abvicky.in" target="_blank" rel="noopener" class="footer-link">Vicky</a>
+                    — because you queens deserve nothing less. 👑🌸
+                    <span class="footer-heart">💝</span>
+                </div>
+
+            </div>
+
+        </div><!-- /gallery-wrapper -->
+    </section>
+
+    <!-- ============================================================
+         CURSOR SPARKLE TRAIL
+    ============================================================ -->
+    <script>
+        (function () {
+            const dot = document.getElementById('cursorDot');
+            const ring = document.getElementById('cursorRing');
+            const cv = document.getElementById('cursorCanvas');
+            cv.style.cssText = 'position:fixed;inset:0;pointer-events:none;z-index:9996;';
+            const ctx = cv.getContext('2d');
+            let W, H, mx = -999, my = -999, rx = -999, ry = -999;
+
+            function resize() { W = cv.width = innerWidth; H = cv.height = innerHeight; }
+            resize(); addEventListener('resize', resize);
+
+            const sparks = [];
+            const CHARS = ['✦', '✧', '✿', '❋', '˚', '⋆', '❀', '♡', '✽', '·'];
+            const COLORS = ['#FF69B4', '#CE93D8', '#FFD6C9', '#FFD700', '#FF1493', '#F3E5F5'];
+
+            function addSparks(x, y) {
+                for (let i = 0; i < 2; i++) {
+                    sparks.push({
+                        x, y,
+                        vx: (Math.random() - .5) * 2.4,
+                        vy: (Math.random() - .5) * 2.4 - .8,
+                        size: Math.random() * 14 + 7,
+                        alpha: .85,
+                        fade: Math.random() * .03 + .018,
+                        char: CHARS[Math.random() * CHARS.length | 0],
+                        color: COLORS[Math.random() * COLORS.length | 0],
+                        spin: (Math.random() - .5) * .14,
+                        angle: 0,
+                    });
+                }
+            }
+
+            addEventListener('mousemove', e => {
+                mx = e.clientX; my = e.clientY;
+                dot.style.left = mx + 'px';
+                dot.style.top = my + 'px';
+                addSparks(mx, my);
+            });
+
+            function tick() {
+                rx += (mx - rx) * .13;
+                ry += (my - ry) * .13;
+                ring.style.left = rx + 'px';
+                ring.style.top = ry + 'px';
+
+                ctx.clearRect(0, 0, W, H);
+                for (let i = sparks.length - 1; i >= 0; i--) {
+                    const s = sparks[i];
+                    ctx.save();
+                    ctx.globalAlpha = Math.max(0, s.alpha);
+                    ctx.fillStyle = s.color;
+                    ctx.font = s.size + 'px serif';
+                    ctx.translate(s.x, s.y);
+                    ctx.rotate(s.angle);
+                    ctx.fillText(s.char, 0, 0);
+                    ctx.restore();
+                    s.x += s.vx; s.y += s.vy;
+                    s.vy += .04;
+                    s.angle += s.spin;
+                    s.alpha -= s.fade;
+                    if (s.alpha <= 0) sparks.splice(i, 1);
+                }
+                requestAnimationFrame(tick);
+            }
+            tick();
+        })();
+    </script>
+
+    <!-- MAIN JS -->
+    <script src="script.js"></script>
+
+</body>
+
+</html>
