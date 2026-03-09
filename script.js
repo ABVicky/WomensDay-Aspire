@@ -290,8 +290,11 @@ function closeLightbox() {
 
   function seed() {
     particles.length = 0; stars.length = 0; orbs.length = 0;
-    for (let i = 0; i < 70; i++) particles.push(makeSpark());
-    for (let i = 0; i < 6; i++) orbs.push(makeOrb());
+    const isMobile = window.innerWidth < 768;
+    const sparkCount = isMobile ? 30 : 70;
+    const orbCount = isMobile ? 3 : 6;
+    for (let i = 0; i < sparkCount; i++) particles.push(makeSpark());
+    for (let i = 0; i < orbCount; i++) orbs.push(makeOrb());
   }
 
   function spawnStars() {

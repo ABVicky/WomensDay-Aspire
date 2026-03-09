@@ -228,18 +228,27 @@ body:has(input:hover) #cursorRing {
     height: 100%;
     object-fit: cover;
     object-position: center top;
-    filter: brightness(0.55) saturate(1.15);
-    transform: scale(1.04);
-    animation: heroZoom 18s ease-in-out infinite alternate;
+    filter: brightness(0.65) saturate(1.1);
+    transform: scale(1.01);
+    animation: heroZoom 24s ease-in-out infinite alternate;
+}
+
+@media (max-width: 768px) {
+    .hero-bg-img {
+        animation: none;
+        transform: none;
+        filter: brightness(0.6);
+        background-color: var(--bg);
+    }
 }
 
 @keyframes heroZoom {
     from {
-        transform: scale(1.04);
+        transform: scale(1.01);
     }
 
     to {
-        transform: scale(1.12);
+        transform: scale(1.08);
     }
 }
 
