@@ -772,6 +772,15 @@ body:has(input:hover) #cursorRing {
     text-align: center;
 }
 
+.photo-card-wish {
+    font-size: 0.65rem;
+    font-style: italic;
+    color: var(--txt-lo);
+    text-align: center;
+    margin-bottom: 0.3rem;
+    letter-spacing: 0.05em;
+}
+
 @keyframes heartBeat {
     from {
         transform: scale(1);
@@ -964,6 +973,14 @@ body:has(input:hover) #cursorRing {
     letter-spacing: .12em;
     margin-bottom: .5rem;
     animation: heartBeat .8s ease-in-out infinite alternate;
+}
+
+.lightbox-wish {
+    font-size: 0.8rem;
+    font-style: italic;
+    color: var(--txt-mid);
+    margin-bottom: 0.6rem;
+    letter-spacing: 0.05em;
 }
 
 .lightbox-quote {

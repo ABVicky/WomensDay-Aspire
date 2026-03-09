@@ -171,6 +171,7 @@ function buildGallery() {
       <img src="${item.src}" alt="DigiSpire Woman ${i + 1}" loading="lazy" />
       <div class="photo-card-overlay">
         <div class="photo-card-hearts">${item.hearts}</div>
+        <div class="photo-card-wish">Vicky wishes you...</div>
         <div class="photo-card-msg">${item.quote}</div>
       </div>
       <div class="photo-card-ribbon">🌸 She Slays</div>
@@ -197,6 +198,7 @@ function createLightbox() {
       <img id="lbImg" src="" alt="" />
       <div class="lightbox-msg">
         <div class="lightbox-hearts" id="lbHearts"></div>
+        <div class="lightbox-wish">Vicky wishes you...</div>
         <p class="lightbox-quote" id="lbQuote"></p>
       </div>
     </div>
