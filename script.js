@@ -15,7 +15,7 @@ const galleryImages = [
     quote: "Your brilliance lights up every room you walk into. ✨"
   },
   {
-    src: "images/ChatGPT Image Mar 6, 2026, 09_22_25 PM.png",
+    src: "images/chatgpt_image.png",
     hearts: "🌸 💐 🌺",
     quote: "Radiant, resilient, and truly remarkable. 🌸"
   },
@@ -45,7 +45,7 @@ const galleryImages = [
     quote: "Your warmth creates a place where everyone thrives. 🌷"
   },
   {
-    src: "images/hf_20260307_193546_91a2cf10-daba-4479-b0a0-04bbb5b4e681 (1).jpeg",
+    src: "images/hf_04bbb5b4.jpeg",
     hearts: "💖 🌸 💐",
     quote: "A heart full of kindness and a mind full of magic. 🌙"
   },
